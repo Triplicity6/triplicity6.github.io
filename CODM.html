@@ -12,6 +12,22 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- stuff for graph -->
+		<link href="https://fonts.googleapis.com/css?family=Chivo:300,300i,400,700|Roboto:300,300i,400" rel="stylesheet">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <noscript>
+            <link rel="stylesheet" href="css/skel.css" />
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="css/style-xlarge.css" />
+        </noscript>
+		<!-- stuff for graphs -->
 	</head>
 	<body class="is-preload">
 
@@ -49,6 +65,21 @@
 						<hr />
 						<h3>CALL OF DUTY: MOBILE</h3>
 						<p>Call of Duty Mobile provides users with basic stats of their last 50 games.</p>
+
+						<!-- chart -->
+
+
+						<script src="https://d3js.org/d3.v4.min.js"></script>
+						<script src="https://d3js.org/topojson.v1.min.js"></script>
+						<script src="https://d3js.org/queue.v1.min.js"></script>
+						<link rel="stylesheet" href="code/style.css">
+
+						<div class="container">
+						<div id="viz1"><svg id="linechart" height="500" width="1000"></svg>
+						<script src="code/line.js"></script>
+						</div>
+								
+						<!-- chart -->
 						<h3>Terms and Definitions</h3>
 									<div class="table-wrapper">
 										<table>
