@@ -52,7 +52,7 @@ d3.csv("data/skyscrapers-top10.csv", function(data){
       .attr("font-family", "Chivo")
       .attr("font-weight", "400")
       .attr("font-size", "12px")
-      .text("Height (m)");
+      .text("Height in (m)");
 
     svg_bar.append("text")
         .attr("transform", "translate(" + width_bar/2 + "," + -60 + ")")
