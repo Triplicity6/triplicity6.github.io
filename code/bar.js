@@ -21,57 +21,14 @@ var xScaleBar = d3.scaleBand()
   var yAxisBar = d3.axisLeft()
     .scale(yScaleBar);
 
-d3.csv("cleanIncomeStatement.csv", function(data){
+d3.csv("data/skyscrapers-top10.csv", function(data){
 
-  var date = ['1/31/2000',
- '1/31/2001',
- '1/31/2002',
- '1/31/2003',
- '1/31/2004',
- '1/31/2005',
- '1/31/2006',
- '1/31/2007',
- '1/31/2008',
- '1/31/2009',
- '1/31/2010',
- '1/31/2011',
- '1/31/2012',
- '1/31/2013',
- '1/31/2014',
- '1/31/2015',
- '1/31/2016',
- '1/31/2017',
- '1/31/2018',
- '1/31/2019']
+  var cities = ["All", "Atlanta", "Boston", "Chicago", "Dallas", "Detroit", "Houston", "Jersey City", "Las Vegas", "Los Angeles", "Miami", "New York City", "Philadelphia", "Pittsburgh", "San Francisco", "Seattle"];
 
- var gross_profit = [5296300,
- 5664383,
- 4143484,
- 4913151,
- 5968000,
- 6381000,
- 5869000,
- 5649000,
- 5692000,
- 5447000,
- 5724000,
- 5889000,
- 5274000,
- 6171000,
- 6293000,
- 6289000,
- 5720000,
- 5640000,
- 6066000,
- 6322000]
-
-  // var cities = ["All", "Atlanta", "Boston", "Chicago", "Dallas", "Detroit", "Houston", "Jersey City", "Las Vegas", "Los Angeles", "Miami", "New York City", "Philadelphia", "Pittsburgh", "San Francisco", "Seattle"];
-
-  // var purposes = ["abandoned", "casino", "government", "hospital", "hotel", "observation", "office", "religious", "residential", "retail", "telecommunications"];
+  var purposes = ["abandoned", "casino", "government", "hospital", "hotel", "observation", "office", "religious", "residential", "retail", "telecommunications"];
 
 
-	// var selection = cities[0];
-  var selection = date[0;]
+	var selection = cities[0];
 
 	yScaleBar.domain([0, d3.max(data, function(d){ return d.height; })])
 
@@ -131,9 +88,9 @@ d3.csv("cleanIncomeStatement.csv", function(data){
 
           var purposeString = "<i>" + d.main + "</i>";
 
-          for (i in date){
-            if (d[date[i]] === "TRUE" && pdate[i] != d.main){
-              purposeString = purposeString + ", " + date[i];
+          for (i in purposes){
+            if (d[purposes[i]] === "TRUE" && purposes[i] != d.main){
+              purposeString = purposeString + ", " + purposes[i];
             }
           }
 
@@ -158,8 +115,8 @@ d3.csv("cleanIncomeStatement.csv", function(data){
           .style("font", "10px 'Chivo'")
           .style("font-weight", "300")
           .style("color", "black")
-          // .html(d.city + ", " + d.state + "<br><b> height: </b>" + d3.format(".5n")(d.height) + " m <br>" + "<b>completed:</b> " + d["completed.year"] +
-          //   "<br><b>purposes: </b>" + purposeString);
+          .html(d.city + ", " + d.state + "<br><b> height: </b>" + d3.format(".5n")(d.height) + " m <br>" + "<b>completed:</b> " + d["completed.year"] +
+            "<br><b>purposes: </b>" + purposeString);
 
         }
         else{
@@ -172,7 +129,7 @@ d3.csv("cleanIncomeStatement.csv", function(data){
           .style("font-weight", "400")
           .style("font-family", "Chivo")
           .style("text-decoration", "underline")
-          // .text(d.name);
+          .text(d.name);
 
         svg_bar.append("foreignObject")
           .attr("class", "tooltipbar")
@@ -183,8 +140,8 @@ d3.csv("cleanIncomeStatement.csv", function(data){
           .style("font", "10px 'Chivo'")
           .style("font-weight", "300")
           .style("color", "black")
-          // .html("<b> height: </b>" + d3.format(".5n")(d.height) + " m <br>" + "<b>completed:</b> " + d["completed.year"] +
-          //   "<br><b>purposes: </b>" + purposeString);
+          .html("<b> height: </b>" + d3.format(".5n")(d.height) + " m <br>" + "<b>completed:</b> " + d["completed.year"] +
+            "<br><b>purposes: </b>" + purposeString);
 
         }
              
