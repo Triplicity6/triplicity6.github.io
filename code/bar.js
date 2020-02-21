@@ -10,7 +10,7 @@ var yScaleBar = d3.scaleLinear()
       .range([height_bar, 0]);
 
 var xScaleBar = d3.scaleBand()
-              .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 20])
+              .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, "food"])
               .range([0, width_bar])
               .paddingInner(0.05)
               .paddingOuter(0.25);
@@ -52,7 +52,7 @@ d3.csv("data/skyscrapers-top10.csv", function(data){
       .attr("font-family", "Chivo")
       .attr("font-weight", "400")
       .attr("font-size", "12px")
-      .text("Height in (m)");
+      .text("Height in meters (m)");
 
     svg_bar.append("text")
         .attr("transform", "translate(" + width_bar/2 + "," + -60 + ")")
