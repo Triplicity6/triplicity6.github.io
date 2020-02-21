@@ -1,178 +1,117 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  <style>
-    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
-    .xGroup line, .xGroup path{
-    	visibility: hidden;
-		}
-  .tooltip{
-      position      : absolute;
-      text-align    : center;
-      max-width     : 70px;
-      max-height    : 30px;
-      padding       : 8px;
-      border        : none;
-      border-radius : 8px;
-      margin-top    : -30px;
-      font          : 10px sans-serif;
-      background    : black;
-      color         : white;
-      pointer-events: none;
-  }
-  </style>
-</head>
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>T6 Homepage</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-<body>
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.html">Industrious</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
 
-<div id='container'></div>
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="elements.html">Elements</a></li>
+					<!--<li><a href="generic.html">Generic</a></li>-->
+				</ul>
+			</nav>
 
-<script id='codeExcute'>
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>Data Analysis</h1>
+			</div>
 
-// This exmaple is enlighten by http://bl.ocks.org/mbostock/1087001
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>WELCOME!</h2>
+						</header>
+						<p>Please have fun with the Data Visualizations and Analysis </p>
+						<hr />
+						<h3>A Visualization of Skyscrapers</h3>
+						<p>One of the first visualizations I created was for a group project.  It was a pleasure to work with Claire on this.
+						<br>
+						We wanted to see if we could gain any insight on a dataset we found. <a href="https://cpang4.github.io/cs360-finalproject/">Enjoy!</a></p>
+						<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/queue.v1.min.js"></script>
+<link rel="stylesheet" href="code/style.css">
 
-var url = 'data_income.csv'
+<div class="container">
+	<div id="viz4">
+    <div id="drop"></div>
+    <svg id="bar" width="1000" height="520"></svg>
+    <script src="code/bar.js"></script>
+</div>
+</div>
 
-d3.csv(url, function(error, data){
-    data.forEach(function (d) {
-      d.income = +d.income;
-    });
-    // console.log(data)
-    var margin = {top: 65, bottom: 50, left: 50, right: 30}, axisPadding = 10;
-    var Width = 500, Height = 300;
-    var svgWidth = Width + margin.left + margin.right,
-        svgHeight = Height + margin.top + margin.bottom;
-    var maxIncome = d3.max(data, function(d){ return d.income; });
-    
-    
-    // define scales and axises
-    var xScale = d3.scale.ordinal()
-        .domain(data.map(function(d){ return d.country; }))
-        .rangeBands([0, Width], 0.1);
-    var yScale = d3.scale.linear()
-        .domain([0, maxIncome])
-        .range([0, Height]);
-    var color = d3.scale.category10();
-    
-    var xAxis = d3.svg.axis()
-        .scale(xScale)
-        .tickSize(0,0)
-        .orient('bottom');
-    var yAxis = d3.svg.axis()
-        .scale(yScale.copy().domain([maxIncome, 0]))
-        .tickSize(6,0)
-        .ticks(5)
-        .orient('left');
-    
-    // create a svg canvas
-    var svg = d3.select('#container')
-        .append('svg')
-        .attr({width: svgWidth, height: svgHeight})
-    
-    
-    // Drawing for axises
-    var xGroup = svg.append('g')
-        .attr('class', 'xGroup')
-        .attr('transform', 'translate(' + [margin.left, margin.top + Height + axisPadding] + ')');
-    xGroup.call(xAxis);
-    styleAxis(xGroup);
-    var yGroup = svg.append('g')
-        .attr('class', 'yGroup')
-        .attr('transform', 'translate(' + [margin.left - axisPadding, margin.top] + ')');
-    yGroup.call(yAxis);
-    styleAxis(yGroup);
+						<hr />
+						<h3>CALL OF DUTY: MOBILE</h3>
+						<p>Call of Duty Mobile provides users with basic stats of their last 50 game play.<a href="CODM.html">Enjoy!</a></p></p>
+						<hr />
 
 
-    // Label layer
-    var label = svg.append('g')
-        .attr('transform', 'translate(' + [margin.left - axisPadding, margin.top] + ')');
-    label.append('text')
-        .text('Income [%]')
-        .attr('transform', 'rotate(-90)')
-        .attr({
-            'text-anchor': 'start',
-            x: -75,
-            y: 20,
-        })
-    label.append('text')
-        .text('Bar Chart with Tooltip')
-        .attr('transform', 'translate(' + [Width / 2, - margin.top / 2] + ')')
-        .attr({
-            'text-anchor': 'middle',
-            'font-size': '1.5em',
-            fill: 'steelblue',
-        });
+					</div>
+				</div>
+			</section>
 
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>Accumsan montes viverra</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+						</section>
+						<section>
+							<h4>Sem turpis amet semper</h4>
+							<ul class="alt">
+								<li><a href="#">Dolor pulvinar sed etiam.</a></li>
+								<li><a href="#">Etiam vel lorem sed amet.</a></li>
+								<li><a href="#">Felis enim feugiat viverra.</a></li>
+								<li><a href="#">Dolor pulvinar magna etiam.</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Magna sed ipsum</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+					</div>
+				</div>
+			</footer>
 
-    // Drawing for graph body
-    var graph = svg.append('g')
-        .attr('class', 'graph')
-        .attr('transform', 'translate(' + [margin.left, margin.top + Height] + ')');
-    var bars = graph.selectAll('g')
-        .data(data)
-        .enter()
-        .append('g')
-        .attr('transform', function(d,i){ return 'translate(' + [xScale(d.country), -1 * yScale(d.income)] + ')'; });
-    bars.append('rect')
-        .each(function(d,i){
-            d3.select(this).attr({
-                fill: color.range()[i],
-                width: xScale.rangeBand(),
-                height: yScale(d.income),
-            })
-        })
-        .on('mouseover', mouseover)
-        .on('mousemove', mousemove)
-        .on('mouseout', mouseout);
-    
-    bars.append('text')
-    .text(function(d){ return d.income; })
-    .each(function(d,i){
-        d3.select(this).attr({
-            fill: color.range()[i],
-            stroke: 'none',
-            x: xScale.rangeBand() / 2,
-            y: -5,
-            'text-anchor': 'middle',
-        });
-    })
-    
-    
-    
-    // tooltips
-    var div = d3.select('#container').append('div')
-        .attr('class', 'tooltip')
-        .style('display', 'none');
-    function mouseover(){
-        div.style('display', 'inline');
-    }
-    function mousemove(){
-        var d = d3.select(this).data()[0]
-        div
-            .html(d.country + '<hr/>' + d.income)
-            .style('left', (d3.event.pageX - 34) + 'px')
-            .style('top', (d3.event.pageY - 12) + 'px');
-    }
-    function mouseout(){
-        div.style('display', 'none');
-    }
-})
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-
-function styleAxis(axis){
-    // style path
-    axis.select('.domain').attr({
-        fill: 'none',
-        stroke: '#888',
-        'stroke-width': 1
-    });
-    // style tick
-    axis.selectAll('.tick line').attr({
-        stroke: '#000',
-        'stroke-width': 1,
-    })
-}
-
-</script>
-</body>
+	</body>
+</html>
