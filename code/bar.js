@@ -10,7 +10,7 @@ var yScaleBar = d3.scaleLinear()
       .range([height_bar, 0]);
 
 var xScaleBar = d3.scaleBand()
-              .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+              .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 20])
               .range([0, width_bar])
               .paddingInner(0.05)
               .paddingOuter(0.25);
