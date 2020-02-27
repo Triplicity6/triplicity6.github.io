@@ -19,7 +19,7 @@ var x = d3.scaleTime().range([0, width]),
 var colorMap = {"Total Revenue": d3.rgb("#7fc97f"), 
 				"Net Income":d3.rgb("#fdc086"), 
 				"Gross Profit":d3.rgb("#beaed4"), 
-				"other":d3.rgb("#f0027f"), 
+				"Cost of Revenue":d3.rgb("#f0027f"), 
 				"all":d3.rgb("#386cb0")};				
 
 var xAxis_line = d3.axisBottom()
@@ -342,7 +342,7 @@ d3.csv("data/simpleIS.csv", type, function(error, data) {
     focus2.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Total Revenue"]) + ")");
     focus3.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Gross Profit"]) + ")");
     focus4.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Net Income"]) + ")");
-    focus5.attr("transform", "translate(" + x(d.Year) + "," + y(d.other) + ")");
+    focus5.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Cost of Revenue"]) + ")");
     focusYear.attr("transform", "translate(" + (x(d.Year)-75) + ", 30)");
 
     d3.select("#vertLine")
@@ -376,10 +376,10 @@ d3.csv("data/simpleIS.csv", type, function(error, data) {
         .text(d.["Net Income"]);
 
     focus5.select("text.y3")
-        .text(d.other);
+        .text(d.["Cost of Revenue"]);
 
     focus5.select("text.y4")
-        .text(d.other);
+        .text(d.["Cost of Revenue"]);
 
   }; 
 
