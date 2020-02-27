@@ -11,7 +11,7 @@ var parseTime = d3.timeParse("%Y");
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]);
 
-var colorMap = {"hotel": d3.rgb("#7fc97f"), "residential":d3.rgb("#fdc086"), "office":d3.rgb("#beaed4"), "other":d3.rgb("#f0027f"), "all":d3.rgb("#386cb0")};
+var colorMap = {"hotel": d3.rgb("#7fc97f"), "residential":d3.rgb("#fdc086"), "office":d3.rgb("#beaed4"), "other":d3.rgb("#f0027f"), "netIncome":d3.rgb("#386cb0")};
 
 var xAxis_line = d3.axisBottom()
     .scale(x);
@@ -329,7 +329,7 @@ d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
         d0 = data[i - 1],
         d1 = data[i],
         d = x0 - d0.year > d1.year - x0 ? d1 : d0;
-    focus.attr("transform", "translate(" + x(d.year) + "," + y(d.all) + ")");
+    focus.attr("transform", "translate(" + x(d.year) + "," + y(d.netIncome) + ")");
     focus2.attr("transform", "translate(" + x(d.year) + "," + y(d.hotel) + ")");
     focus3.attr("transform", "translate(" + x(d.year) + "," + y(d.office) + ")");
     focus4.attr("transform", "translate(" + x(d.year) + "," + y(d.residential) + ")");
@@ -343,10 +343,10 @@ d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
        .text("Year: " + d.year.getFullYear());
 
     focus.select("text.y3")
-        .text(d.all);
+        .text(d.netIncome);
 
     focus.select("text.y4")
-        .text(d.all);
+        .text(d.netIncome);
 
     focus2.select("text.y3")
         .text(d.hotel);
