@@ -11,7 +11,13 @@ var parseTime = d3.timeParse("%Y");
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]);
 
-var colorMap = {"hotel": d3.rgb("#7fc97f"), "residential":d3.rgb("#fdc086"), "office":d3.rgb("#beaed4"), "other":d3.rgb("#f0027f"), "netIncome":d3.rgb("#386cb0")};
+// year	Total Revenue	Cost of Revenue	Gross Profit	Net Income	all
+
+var colorMap = {"Total Revenue": d3.rgb("#7fc97f"), 
+				"Cost of Revenue":d3.rgb("#fdc086"), 
+				"Gross Profit":d3.rgb("#beaed4"), 
+				"Net Income":d3.rgb("#f0027f"), 
+				"all":d3.rgb("#386cb0")};
 
 var xAxis_line = d3.axisBottom()
     .scale(x);
@@ -329,11 +335,11 @@ d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
         d0 = data[i - 1],
         d1 = data[i],
         d = x0 - d0.year > d1.year - x0 ? d1 : d0;
-    focus.attr("transform", "translate(" + x(d.year) + "," + y(d.netIncome) + ")");
-    focus2.attr("transform", "translate(" + x(d.year) + "," + y(d.hotel) + ")");
-    focus3.attr("transform", "translate(" + x(d.year) + "," + y(d.office) + ")");
-    focus4.attr("transform", "translate(" + x(d.year) + "," + y(d.residential) + ")");
-    focus5.attr("transform", "translate(" + x(d.year) + "," + y(d.other) + ")");
+    focus.attr("transform", "translate(" + x(d.year) + "," + y(d.all) + ")");
+    focus2.attr("transform", "translate(" + x(d.year) + "," + y(d['Total Revenue']) + ")");
+    focus3.attr("transform", "translate(" + x(d.year) + "," + y(d['Gross Profit']) + ")");
+    focus4.attr("transform", "translate(" + x(d.year) + "," + y(d['Cost of Revenue']) + ")");
+    focus5.attr("transform", "translate(" + x(d.year) + "," + y(d['Net Income']) + ")");
     focusYear.attr("transform", "translate(" + (x(d.year)-75) + ", 30)");
 
     d3.select("#vertLine")
@@ -343,34 +349,34 @@ d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
        .text("Year: " + d.year.getFullYear());
 
     focus.select("text.y3")
-        .text(d.netIncome);
+        .text(d.all);
 
     focus.select("text.y4")
-        .text(d.netIncome);
+        .text(d.all);
 
     focus2.select("text.y3")
-        .text(d.hotel);
+        .text(d['Total Revenue']);
 
     focus2.select("text.y4")
-        .text(d.hotel);
+        .text(d['Total Revenue']);
 
     focus3.select("text.y3")
-        .text(d.office);
+        .text(d['Gross Profit']);
 
     focus3.select("text.y4")
-        .text(d.office);
+        .text(d['Gross Profit']);
 
     focus4.select("text.y3")
-        .text(d.residential);
+        .text(d['Cost of Revenue']);
 
     focus4.select("text.y4")
-        .text(d.residential);
+        .text(d['Cost of Revenue']);
 
     focus5.select("text.y3")
-        .text(d.other);
+        .text(d['Net Income']);
 
     focus5.select("text.y4")
-        .text(d.other);
+        .text(d['Net Income']);
 
   }; 
 
