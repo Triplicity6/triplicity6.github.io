@@ -76,7 +76,7 @@ d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
       .style("font-family", "Chivo")
       .attr("font-size", "12px")
       .attr("font-weight", "400")
-      .text("Number of Skyscrapers");
+      .text("Number in Thousands");
 
   svg_line.append("text")
         .attr("transform", "translate(" + width/2 + "," + -20 + ")")
