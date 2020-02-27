@@ -84,7 +84,7 @@ d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
         .attr("font-family", "Chivo")
         .attr("font-weight", "300")
         .attr("font-size", "20px")
-        .text("Number of Skyscrapers by Year in the US");
+        .text("Critical Financial Data for Gap Inc.");
 
   var purp = svg_line.selectAll(".purp")
     .data(purposes)
