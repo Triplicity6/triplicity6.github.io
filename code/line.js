@@ -11,16 +11,7 @@ var parseTime = d3.timeParse("%Y");
 var x = d3.scaleTime().range([0, width]),
     y = d3.scaleLinear().range([height, 0]);
 
-// var colorMap = {"Total Revenue": d3.rgb("#7fc97f"), 
-// 				"Net Income":d3.rgb("#fdc086"), 
-// 				"Gross Profit":d3.rgb("#beaed4"), 
-// 				"Cost of Revenue":d3.rgb("#f0027f"), 
-// 				"all":d3.rgb("#386cb0")};
-var colorMap = {"Total Revenue": d3.rgb("#7fc97f"), 
-				"Net Income":d3.rgb("#fdc086"), 
-				"Gross Profit":d3.rgb("#beaed4"), 
-				"Cost of Revenue":d3.rgb("#f0027f"), 
-				"all":d3.rgb("#386cb0")};				
+var colorMap = {"hotel": d3.rgb("#7fc97f"), "residential":d3.rgb("#fdc086"), "office":d3.rgb("#beaed4"), "other":d3.rgb("#f0027f"), "all":d3.rgb("#386cb0")};
 
 var xAxis_line = d3.axisBottom()
     .scale(x);
@@ -30,26 +21,26 @@ var yAxis_line = d3.axisLeft()
 
 var line = d3.line()
     .curve(d3.curveBasis)
-    .x(function(d) { return x(d.Year); })
+    .x(function(d) { return x(d.year); })
     .y(function(d) { return y(d.count); });
 
 
 // will keep track of which purpose is being shown and full name of purpose
 var purpMap = {};
 
-d3.csv("data/simpleIS.csv", type, function(error, data) {
+d3.csv("data/skyscrapers-count.csv", type, function(error, data) {
   if (error) throw error;
 
   var purposes = data.columns.slice(1).map(function(id) {
     return {
       id: id,
       values: data.map(function(d) {
-        return {Year: d.Year, count: d[id]};
+        return {year: d.year, count: d[id]};
       })
     };
   });
 
-  x.domain([d3.min(data, function(d){return d.Year; }), d3.max(data, function(d){return d.Year;})]);
+  x.domain([d3.min(data, function(d){return d.year; }), d3.max(data, function(d){return d.year;})]);
 
   y.domain([
     d3.min(purposes, function(c) { return d3.min(c.values, function(d) { return d.count; }); }),
@@ -110,7 +101,7 @@ d3.csv("data/simpleIS.csv", type, function(error, data) {
 
   purp.append("text")
       .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + x(d.value.Year) + "," + y(d.value.count) + ")"; })
+      .attr("transform", function(d) { return "translate(" + x(d.value.year) + "," + y(d.value.count) + ")"; })
       .attr("x", 3)
       .attr("dy", "0.35em")
       .attr("font-weight", "400")
@@ -337,19 +328,19 @@ d3.csv("data/simpleIS.csv", type, function(error, data) {
         i = bisectDate(data, x0, 1),
         d0 = data[i - 1],
         d1 = data[i],
-        d = x0 - d0.Year > d1.Year - x0 ? d1 : d0;
-    focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.all) + ")");
-    focus2.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Total Revenue"]) + ")");
-    focus3.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Gross Profit"]) + ")");
-    focus4.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Net Income"]) + ")");
-    focus5.attr("transform", "translate(" + x(d.Year) + "," + y(d.["Cost of Revenue"]) + ")");
-    focusYear.attr("transform", "translate(" + (x(d.Year)-75) + ", 30)");
+        d = x0 - d0.year > d1.year - x0 ? d1 : d0;
+    focus.attr("transform", "translate(" + x(d.year) + "," + y(d.all) + ")");
+    focus2.attr("transform", "translate(" + x(d.year) + "," + y(d.hotel) + ")");
+    focus3.attr("transform", "translate(" + x(d.year) + "," + y(d.office) + ")");
+    focus4.attr("transform", "translate(" + x(d.year) + "," + y(d.residential) + ")");
+    focus5.attr("transform", "translate(" + x(d.year) + "," + y(d.other) + ")");
+    focusYear.attr("transform", "translate(" + (x(d.year)-75) + ", 30)");
 
     d3.select("#vertLine")
-      .attr("transform", "translate(" + x(d.Year) + ", 0)");
+      .attr("transform", "translate(" + x(d.year) + ", 0)");
 
     focusYear.selectAll(".date")
-       .text("Year: " + d.Year.getFullYear());
+       .text("Year: " + d.year.getFullYear());
 
     focus.select("text.y3")
         .text(d.all);
@@ -358,37 +349,37 @@ d3.csv("data/simpleIS.csv", type, function(error, data) {
         .text(d.all);
 
     focus2.select("text.y3")
-        .text(d.["Total Revenue"]);
+        .text(d.hotel);
 
     focus2.select("text.y4")
-        .text(d.["Total Revenue"]);
+        .text(d.hotel);
 
     focus3.select("text.y3")
-        .text(d.["Gross Profit"]);
+        .text(d.office);
 
     focus3.select("text.y4")
-        .text(d.["Gross Profit"]);
+        .text(d.office);
 
     focus4.select("text.y3")
-        .text(d.["Net Income"]);
+        .text(d.residential);
 
     focus4.select("text.y4")
-        .text(d.["Net Income"]);
+        .text(d.residential);
 
     focus5.select("text.y3")
-        .text(d.["Cost of Revenue"]);
+        .text(d.other);
 
     focus5.select("text.y4")
-        .text(d.["Cost of Revenue"]);
+        .text(d.other);
 
   }; 
 
-  var bisectDate = d3.bisector(function(d) { return (d.Year); }).left;    
+  var bisectDate = d3.bisector(function(d) { return (d.year); }).left;    
 
 });
 
 function type(d, _, columns) {
-  d.Year = parseTime(d.Year);
+  d.year = parseTime(d.year);
   for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
   return d;
 }
